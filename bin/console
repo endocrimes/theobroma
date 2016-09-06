@@ -22,7 +22,7 @@ def remove_bundler_monkeypatches
   if rubygems_18_or_better?
     Kernel.module_eval do
       def gem(gem_name, *requirements) # :doc:
-        skip_list = (ENV['GEM_SKIP'] || "").split(/:/)
+        skip_list = (ENV['GEM_SKIP'] || '').split(/:/)
         raise Gem::LoadError, "skipping #{gem_name}" if skip_list.include? gem_name
         spec = Gem::Dependency.new(gem_name, *requirements).to_spec
         spec.activate if spec
@@ -31,7 +31,7 @@ def remove_bundler_monkeypatches
   else
     Kernel.module_eval do
       def gem(gem_name, *requirements) # :doc:
-        skip_list = (ENV['GEM_SKIP'] || "").split(/:/)
+        skip_list = (ENV['GEM_SKIP'] || '').split(/:/)
         raise Gem::LoadError, "skipping #{gem_name}" if skip_list.include? gem_name
         Gem.activate(gem_name, *requirements)
       end
@@ -39,7 +39,7 @@ def remove_bundler_monkeypatches
   end
 end
 
-if Gem.post_reset_hooks.reject!{ |hook| hook.source_location.first =~ %r{/bundler/} }
+if Gem.post_reset_hooks.reject! { |hook| hook.source_location.first =~ %r{/bundler/} }
   Gem.clear_paths
   Gem::Specification.reset
   remove_bundler_monkeypatches

@@ -7,4 +7,3 @@ if ARGV == %w(--cocoapods-version)
 else
   load Gem.bin_path('cocoapods', 'pod', Theobroma.cocoapods_version)
 end
-
