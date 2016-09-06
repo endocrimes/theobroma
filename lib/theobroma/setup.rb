@@ -7,10 +7,9 @@ version = environment.cocoapods_version
 
 puts "Detected CocoaPods version: #{version}"
 installer = Theobroma::Installer.new(version)
-puts "CocoaPods Version (#{version}) installed? #{installer.installed?}" 
+puts "CocoaPods Version (#{version}) installed? #{installer.installed?}"
 installer.install!
 
 gem 'cocoapods', version
 
 require 'cocoapods/gem_version'
-

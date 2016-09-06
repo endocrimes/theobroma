@@ -1,4 +1,4 @@
-require "theobroma/version"
+require 'theobroma/version'
 
 module Theobroma
   require 'theobroma/environment'

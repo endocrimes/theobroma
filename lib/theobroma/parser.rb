@@ -10,7 +10,7 @@ module Theobroma
     end
 
     def pods_version
-      @yaml["COCOAPODS"]
+      @yaml['COCOAPODS']
     end
   end
 end
