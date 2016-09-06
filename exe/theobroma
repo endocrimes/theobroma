@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'theobroma'
+Theobroma.setup
+if ARGV == %w(--cocoapods-version)
+  puts Theobroma.cocoapods_version
+else
+  load Gem.bin_path('cocoapods', 'pod', Theobroma.cocoapods_version)
+end
+
