@@ -1,14 +1,50 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "theobroma"
+require 'bundler/setup'
+require 'theobroma'
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+def rubygems_18_or_better?
+  defined?(Gem.post_reset_hooks)
+end
 
-# (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
+def rubygems_20_or_better?
+  Gem::VERSION.to_i >= 2
+end
 
-require "irb"
+# Ugh, this stuff is quite vile.
+def remove_bundler_monkeypatches
+  if rubygems_20_or_better?
+    load 'rubygems/core_ext/kernel_require.rb'
+  else
+    load 'rubygems/custom_require.rb'
+  end
+
+  if rubygems_18_or_better?
+    Kernel.module_eval do
+      def gem(gem_name, *requirements) # :doc:
+        skip_list = (ENV['GEM_SKIP'] || "").split(/:/)
+        raise Gem::LoadError, "skipping #{gem_name}" if skip_list.include? gem_name
+        spec = Gem::Dependency.new(gem_name, *requirements).to_spec
+        spec.activate if spec
+      end
+    end
+  else
+    Kernel.module_eval do
+      def gem(gem_name, *requirements) # :doc:
+        skip_list = (ENV['GEM_SKIP'] || "").split(/:/)
+        raise Gem::LoadError, "skipping #{gem_name}" if skip_list.include? gem_name
+        Gem.activate(gem_name, *requirements)
+      end
+    end
+  end
+end
+
+if Gem.post_reset_hooks.reject!{ |hook| hook.source_location.first =~ %r{/bundler/} }
+  Gem.clear_paths
+  Gem::Specification.reset
+  remove_bundler_monkeypatches
+  loaded = true
+end
+
+require 'irb'
 IRB.start
