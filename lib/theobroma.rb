@@ -10,6 +10,6 @@ module Theobroma
   end
 
   def self.cocoapods_version
-    defined?(Pods::VERSION) && Pods::VERSION
+    defined?(Pod::VERSION) && Pod::VERSION
   end
 end
