@@ -1,33 +1,46 @@
 # Theobroma
 
-> Theobroma cacao is the taxonomic classification for the plant also called the cacao tree and the cocoa tree
+<!-- [![Build Status](https://travis-ci.org/{{RepoSlug}}.svg?branch=master)](https://travis-ci.org/{{RepoSlug}}) -->
+[![Latest Release](https://img.shields.io/github/release/dantoml/theobroma.svg)](https://github.com/dantoml/theobroma/releases/latest)
 
-## Installation
+> Theobroma cacao is the taxonomic classification for the plant also called the cacao tree and the cocoa tree.
 
-Add this line to your application's Gemfile:
+# :question: Why?
 
-```ruby
-gem 'theobroma'
+To reduce issues when building projects that don't use Bundler.
+
+# Installation
+
+```
+$ [sudo] gem install theobroma
 ```
 
-And then execute:
+# Usage
 
-    $ bundle
+Replace your usage of `pod` with `theobroma` i.e:
 
-Or install it yourself as:
+```
+$ pod install
+```
 
-    $ gem install theobroma
+becomes:
 
-## Usage
+```
+$ theobroma install
+```
 
-- `theobroma [CocoaPods Command]`
+:purple_heart: Code of Conduct
+------------
+Please note that this project is released with a [Contributor Code of Conduct](./CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-## Contributing
+:gift_heart: Contributing
+------------
+Please create an issue with a description of your problem or open a pull request with a fix.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/theobroma. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+:v: License
+-------
+MIT
 
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
+:alien: Author
+------
+Danielle Tomlinson - https://dantoml.com, [@dantoml](http://twitter.com/dantoml)
