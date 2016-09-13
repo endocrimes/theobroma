@@ -11,6 +11,7 @@ module Theobroma
       gemfile(true) do
         source 'https://rubygems.org'
         gem 'cocoapods', @version
+        gem 'cocoapods-check'
       end
     end
   end
